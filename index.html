@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search">
+            <input type="text" placeholder="Enter City Name">
+            <div class="img" onclick="fetchWeather()" style="cursor: pointer;">
+                <img src="./images/search.png" alt="" >
+            </div>
+        </div>
+        <img src="./images/clear.png" alt="" class="main-img ">
+        <h1 id="temp">0&deg;C</h1>
+        <p id="city">City Name</p>
+        <div class="stats">
+            <div class="humidity">
+                <img src="./images/humidity.png" alt="">
+                <div class="humidity-stats">
+                    <h3 id="humidity">0%</h3>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="humidity">
+                <img src="./images/wind.png" alt="">
+                <div class="humidity-stats">
+                    <h3 id="wind">0 Km/hr</h3>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        async function fetchWeather(){
+            const input = document.querySelector(".search input").value
+            const url =`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${input}&appid=8eab1f9e73017398edc95a626b24ecd3`
+            const response = await fetch(url)
+            const data = await response.json()
+
+            if(data.cod=='404'){
+                alert(data.message)
+            }else{
+                const temp = Math.round(data.main.temp)
+                const cName = data.name
+                const humiditypercentage = data.main.humidity
+                const wSpeed = data.wind.speed
+
+                const temperature = document.getElementById("temp")
+                const cityName = document.getElementById("city")
+                const humidity = document.getElementById("humidity")
+                const windSpeed = document.getElementById('wind')
+                const img = document.querySelector(".main-img")
+
+                temperature.innerHTML = `${temp}&deg;C`
+                cityName.innerHTML = cName
+                humidity.innerHTML=`${humiditypercentage}%`
+                windSpeed.innerHTML=`${wSpeed}M/h`
+
+                if(data.weather[0].main=="Mist"){
+                    img.src="./images/mist.png"
+                }else if(data.weather[0].main=="Clouds"){
+                    img.src="./images/clouds.png"
+                }
+                else if(data.weather[0].main=="Clear"){
+                    img.src="./images/clear.png"
+                }else if(data.weather[0].main=="Rain"){
+                    img.src="./images/rain.png"
+                }else if(data.weather[0].main=="Drizzle"){
+                    img.src="./images/drizzle.png"
+                }
+            }
+        }
+    </script>
+</body>
+</html>

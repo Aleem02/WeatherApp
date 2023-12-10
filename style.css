@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+body{
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg,#00feba,#5b548a);
+    padding: 20px;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+    width: 100%;
+    margin-right: 10px;
+    height: 40px;
+    padding: 5px 20px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+}
+.search input:focus{
+    box-shadow: 0px 0px 19px gray;
+}
+.search .img{
+    width: 50px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+.main-img{
+    width: 150px;
+    align-self: center;
+}
+.container h1{
+    align-self: center;
+    color: white;
+    font-size: 50px;
+    font-weight: 500;
+}
+.container p{
+    align-self: center;
+    color: white;
+    font-size: 32px;
+}
+.stats{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.stats .humidity{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stats .wind-speed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.humidity img{
+    width: 30px;
+}
+.humidity .humidity-stats{
+    color: white;
+    margin-left: 10px;
+}
+.humidity-stats h3{
+    font-size: 24px;
+    font-weight: 500;
+}
+.humidity-stats p{
+    font-size: 14px;
+}
+
+@media screen and (max-width:350px){
+    .container{
+        width: 260px;
+    }
+}
